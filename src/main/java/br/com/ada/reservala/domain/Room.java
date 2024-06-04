@@ -1,17 +1,11 @@
 package br.com.ada.reservala.domain;
 
-
-import javax.validation.constraints.Null;
-import javax.validation.constraints.PositiveOrZero;
-
 public class Room {
 
 
-    @PositiveOrZero(message = "O número do quarto deve ser positivo")
+
     private Integer roomNumber;
-    @Null
     private String type;
-    @PositiveOrZero(message = "O preço deve ser positivo")
     private Double price;
     private Boolean available;
 
@@ -19,21 +13,19 @@ public class Room {
 
     public Room(Integer roomNumber, String type, Double price, Boolean available) {
         this.setRoomNumber(roomNumber);
-        this.type = type;
+        this.setType(type);
         this.setPrice(price);
-        this.available = available;
+        this.setAvailable(available);
     }
 
     public Integer getRoomNumber() {
         return roomNumber;
     }
 
-
-
     public void setRoomNumber(Integer roomNumber) {
-//        if(roomNumber <= 0){
-//            throw new IllegalArgumentException("roomNumber deve ser um número positivo");
-//        }
+        if(roomNumber <= 0){
+            throw new IllegalArgumentException("roomNumber nao deve ser negativo");
+        }
         this.roomNumber = roomNumber;
     }
 
@@ -43,6 +35,10 @@ public class Room {
     }
 
     public void setType(String type) {
+        if(type == null ){
+            throw new IllegalArgumentException("type nao deve ser null");
+        }
+
         this.type = type;
     }
 
@@ -52,9 +48,9 @@ public class Room {
 
 
     public void setPrice(Double price) {
-//        if(price <= 0){
-//            throw new IllegalArgumentException("price deve ser um número positivo");
-//        }
+        if(price <= 0){
+            throw new IllegalArgumentException("price nao deve ser negativo");
+        }
         this.price = price;
     }
 
@@ -63,6 +59,9 @@ public class Room {
     }
 
     public void setAvailable(Boolean available) {
+        if(available == null){
+            throw new IllegalArgumentException("available nao deve ser null");
+        }
         this.available = available;
     }
 }
