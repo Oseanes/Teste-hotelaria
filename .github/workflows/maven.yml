@@ -16,7 +16,7 @@ on:
 
 jobs:
   build:
-
+    needs: coverage
     runs-on: ubuntu-latest
 
     permissions:
